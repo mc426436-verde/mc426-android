@@ -1,4 +1,4 @@
-package io.github.lucasx95.dino;
+package br.unicamp.ic.timeverde.dino;
 
 import org.junit.Test;
 
