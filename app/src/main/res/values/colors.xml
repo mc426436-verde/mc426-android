@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    // Cores comuns no app
+    <color name="colorPrimaryLight">#BBDEFB</color>
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#1976D2</color>
+    <color name="colorAccent">#FF5722</color>
+    <color name="colorPrimaryText">#212121</color>
+    <color name="colorSecondaryText">#727272</color>
+    <color name="colorTextIcon">#FFFFFF</color>
+    <color name="colorDivider">#B6B6B6</color>
+
+    // Cor tela de login
+    <color name="colorLogin">#1976D2</color>
+    <color name="colorLoginButton">#0C3B69</color>
+    <color name="colorLoginDivider">#EEEEEE</color>
+
+    <color name="black_overlay">#66000000</color>
+</resources>

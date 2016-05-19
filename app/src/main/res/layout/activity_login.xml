@@ -1,0 +1,50 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorLogin"
+    tools:context="io.github.lucasx95.dino.LoginActivity">
+
+    <ImageView
+        android:id="@+id/ic_dino"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dino"
+        android:layout_above="@+id/et_login"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp" />
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="250dp"
+        android:maxLength="30"
+        android:singleLine="true"
+        android:hint="@string/type_user"
+        android:id="@id/et_login"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="250dp"
+        android:hint="@string/type_password"
+        android:inputType="textPassword"
+        android:id="@+id/et_password"
+        android:layout_below="@id/et_login"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:text="@string/enter"
+        android:textAllCaps="true"
+        android:id="@+id/button"
+        android:layout_below="@id/et_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp" />
+
+
+</RelativeLayout>
