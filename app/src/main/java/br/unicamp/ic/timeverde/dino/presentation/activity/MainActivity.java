@@ -14,7 +14,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -79,18 +78,30 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Atualiza o DrawerToggle em nova congfiguração
+     * @param newConfig
+     */
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         mActionBarDrawerToggle.onConfigurationChanged(newConfig);
     }
 
+    /**
+     * Sincroniza o Drawer Toggle
+     * @param savedInstanceState
+     * @param persistentState
+     */
     @Override
     public void onPostCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onPostCreate(savedInstanceState, persistentState);
         mActionBarDrawerToggle.syncState();
     }
 
+    /**
+     * Inicia todos componentes necessários pro Navigation Drawer
+     */
     private void setUpNavigationDrawer() {
         // Seta o ClickListener
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -104,36 +115,24 @@ public class MainActivity extends AppCompatActivity {
         // Marca o primeiro como seleiconado
         mNavigationView.getMenu().getItem(0).setChecked(true);
 
-        // Adiciona botao h = amburguer
+        // Adiciona botao hamburguer
         mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string
                 .drawer_open, R.string.drawer_close);
         mDrawerLayout.addDrawerListener(mActionBarDrawerToggle);
         mActionBarDrawerToggle.syncState();
 
-
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            //Inicia o Drawer no clique no botão
-            case android.R.id.home:
-                mDrawerLayout.openDrawer(GravityCompat.START);
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
+    /**
+     * Verifica se o drawer está aberto, caso sim  fecha-o, caso não fecha a activity
+     */
     @Override
     public void onBackPressed() {
-        this.finish();
+        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            mDrawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            finish();
+        }
     }
 
     /**
@@ -148,8 +147,11 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-
-    public void selectDrawerItem(MenuItem menuItem) {
+    /**
+     * Seleciona item do NavigationDrawer
+     * @param menuItem
+     */
+    private void selectDrawerItem(MenuItem menuItem) {
 
         if (menuItem.isChecked()) {
             menuItem.setChecked(true);

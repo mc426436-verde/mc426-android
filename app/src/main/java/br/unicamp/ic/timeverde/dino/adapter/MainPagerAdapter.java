@@ -20,7 +20,7 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
     final static int NUMBER_OF_TABS = 3;
 
     //Constante com o nome das tabs
-    final static ArrayList<String> TAB_NAMES = new ArrayList<>(Arrays.asList("COMODÔS","DEVICES","MACROS"));
+    final static ArrayList<String> TAB_NAMES = new ArrayList<>(Arrays.asList("CÔMODOS","DEVICES","MACROS"));
 
     //Fragment de comodôs
     final RoomFragment roomFragment;
