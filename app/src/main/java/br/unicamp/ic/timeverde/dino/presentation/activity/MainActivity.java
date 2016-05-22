@@ -105,10 +105,16 @@ public class MainActivity extends AppCompatActivity {
         this.finish();
     }
 
-    // Inicia Activity de Login
+    /**
+     * Limpa o token e chama a Activity de Login
+     */
     private void doLogout() {
         PreferenceManager.getDefaultSharedPreferences(this).edit().remove(Constants.USER_TOKEN_PREFERENCE).commit();
-        startActivity(new Intent(this, LoginActivity.class));
+        final Intent intent = new Intent(this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        startActivity(intent);
+        finish();
     }
 
 
