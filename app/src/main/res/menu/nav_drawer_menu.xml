@@ -3,16 +3,22 @@
 
 
     <group android:checkableBehavior="single">
+
         <item
-            android:id="@+id/nav_first_fragment"
+            android:id="@+id/nav_drawer_home_item"
+            android:icon="@drawable/nav_drawer_home"
+            android:title="@string/nav_drawer_home_icon" />
+
+        <item
+            android:id="@+id/nav_drawer_account_item"
             android:icon="@drawable/nav_drawer_account"
             android:title="@string/nav_drawer_account_icon" />
         <item
-            android:id="@+id/nav_second_fragment"
+            android:id="@+id/nav_drawer_accounts_item"
             android:icon="@drawable/nav_drawer_accounts"
             android:title="@string/nav_drawer_accounts_icon" />
         <item
-            android:id="@+id/nav_third_fragment"
+            android:id="@+id/nav_drawer_logout_item"
             android:icon="@drawable/nav_drawer_logout"
             android:title="@string/nav_drawer_logout_icon" />
     </group>

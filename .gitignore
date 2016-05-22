@@ -52,6 +52,7 @@ gen-external-apklibs
 
 # User-specific stuff:
 .idea/*
+/app/src/.idea/*
 
 ## File-based project format:
 *.iws

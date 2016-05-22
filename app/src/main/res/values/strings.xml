@@ -11,5 +11,6 @@
     <string name="nav_drawer_account_icon">Minha conta</string>
     <string name="nav_drawer_accounts_icon">Gerenciar usuários</string>
     <string name="nav_drawer_logout_icon">Encerrar sessão</string>
+    <string name="nav_drawer_home_icon">Início</string>
 
 </resources>

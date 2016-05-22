@@ -31,7 +31,6 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
     //Fragment de macros
     final MacroFragment macroFragment;
 
-
     public MainPagerAdapter(FragmentManager fm) {
         super(fm);
         roomFragment = new RoomFragment();
@@ -46,8 +45,10 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
                 return this.roomFragment;
             case 1:
                 return this.deviceFragment;
-            default:
+            case 2:
                 return this.macroFragment;
+            default:
+                return this.roomFragment;
         }
     }
 
