@@ -13,4 +13,8 @@
     <string name="nav_drawer_logout_icon">Encerrar sessão</string>
     <string name="nav_drawer_home_icon">Início</string>
 
+    // String drawer
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
 </resources>

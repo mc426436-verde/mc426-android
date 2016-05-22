@@ -1,7 +1,9 @@
 package br.unicamp.ic.timeverde.dino.presentation.activity;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -9,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -47,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.main_fragment_container)
     FrameLayout mFrameLayout;
 
+    private ActionBarDrawerToggle mActionBarDrawerToggle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +75,24 @@ public class MainActivity extends AppCompatActivity {
         mTabLayout.setupWithViewPager(mViewPager);
 
         // Seta listener do NavDrawer
+        setUpNavigationDrawer();
+
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mActionBarDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public void onPostCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
+        super.onPostCreate(savedInstanceState, persistentState);
+        mActionBarDrawerToggle.syncState();
+    }
+
+    private void setUpNavigationDrawer() {
+        // Seta o ClickListener
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
@@ -78,7 +101,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Marca o primeiro como seleiconado
         mNavigationView.getMenu().getItem(0).setChecked(true);
+
+        // Adiciona botao h = amburguer
+        mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string
+                .drawer_open, R.string.drawer_close);
+        mDrawerLayout.addDrawerListener(mActionBarDrawerToggle);
+        mActionBarDrawerToggle.syncState();
+
 
     }
 
