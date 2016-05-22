@@ -4,7 +4,7 @@
     // Cores comuns no app
     <color name="colorPrimaryLight">#BBDEFB</color>
     <color name="colorPrimary">#1E88E5</color>
-    <color name="colorPrimaryDark">#1976D2</color>
+    <color name="colorPrimaryDark">#186EBA</color>
     <color name="colorAccent">#FF5722</color>
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#727272</color>
