@@ -2,13 +2,14 @@ package br.unicamp.ic.timeverde.dino.presentation.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.INotificationSideChannel;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import br.unicamp.ic.timeverde.dino.R;
+import br.unicamp.ic.timeverde.dino.helper.Constants;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -29,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @OnClick(R.id.login_button)
     void doLogin(View view) {
+        PreferenceManager.getDefaultSharedPreferences(this).edit().putString(Constants.USER_TOKEN_PREFERENCE, "token").commit();
         final Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
@@ -41,4 +43,8 @@ public class LoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 }
