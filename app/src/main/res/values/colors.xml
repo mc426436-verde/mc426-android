@@ -16,5 +16,9 @@
     <color name="colorLoginButton">#0C3B69</color>
     <color name="colorLoginDivider">#EEEEEE</color>
 
+    // Cor das tabs
+    <color name="tabAccent">#ECEAE8</color>
+    <color name="tabTextColor">#11548D</color>
+
     <color name="black_overlay">#66000000</color>
 </resources>
