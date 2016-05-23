@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import br.unicamp.ic.timeverde.dino.DinoApplication;
 import br.unicamp.ic.timeverde.dino.R;
 import br.unicamp.ic.timeverde.dino.adapter.MainPagerAdapter;
 import br.unicamp.ic.timeverde.dino.helper.Constants;
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Caso não tenha o token vai para a tela de login
-        if (!PreferenceManager.getDefaultSharedPreferences(this).contains(Constants.USER_TOKEN_PREFERENCE)) {
+        if (!((DinoApplication) getApplication()).isLogged()) {
             doLogout();
         }
 
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Atualiza o DrawerToggle em nova congfiguração
+     *
      * @param newConfig
      */
     @Override
@@ -90,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Sincroniza o Drawer Toggle
+     *
      * @param savedInstanceState
      * @param persistentState
      */
@@ -139,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
      * Limpa o token e chama a Activity de Login
      */
     private void doLogout() {
-        PreferenceManager.getDefaultSharedPreferences(this).edit().remove(Constants.USER_TOKEN_PREFERENCE).commit();
+        ((DinoApplication) getApplication()).logout();
         final Intent intent = new Intent(this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
@@ -149,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Seleciona item do NavigationDrawer
+     *
      * @param menuItem
      */
     private void selectDrawerItem(MenuItem menuItem) {
