@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.PersistableBundle;
-import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -21,7 +20,6 @@ import android.widget.FrameLayout;
 import br.unicamp.ic.timeverde.dino.DinoApplication;
 import br.unicamp.ic.timeverde.dino.R;
 import br.unicamp.ic.timeverde.dino.adapter.MainPagerAdapter;
-import br.unicamp.ic.timeverde.dino.helper.Constants;
 import br.unicamp.ic.timeverde.dino.presentation.fragment.AccountFragment;
 import br.unicamp.ic.timeverde.dino.presentation.fragment.AccountsFragment;
 import butterknife.BindView;
@@ -57,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Caso não tenha o token vai para a tela de login
+        //TODO A existência ja eh verificada na SplashScreen Activity
+        // aqui pode ser verificado a validade do token e a
+        // conexão
         if (!((DinoApplication) getApplication()).isLogged()) {
             doLogout();
         }
