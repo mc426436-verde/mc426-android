@@ -5,5 +5,11 @@ package br.unicamp.ic.timeverde.dino.helper;
  */
 public class Constants {
 
-    public final static String USER_TOKEN_PREFERENCE = "br.unicamp.ic.timeverde.dino.USER_TOKEN_PREFERENCE";
+    public final static String USER_ACCOUNT_PREFERENCE = "br.unicamp.ic.timeverde.dino.USER_ACCOUNT_PREFERENCE";
+
+    public final static String USER_TOKEN = "user-token";
+
+    public final static String USER_USERNAME = "user-username";
+
+    public final static String USER_NAME = "user-name";
 }

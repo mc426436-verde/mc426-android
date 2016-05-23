@@ -18,6 +18,15 @@ public class User implements Serializable {
     @SerializedName("access_token")
     private String accessToken;
     private List<String> authorities;
+    private Token token;
+
+    public Token getToken() {
+        return token;
+    }
+
+    public void setToken(Token token) {
+        this.token = token;
+    }
 
     public String getFirstName() {
         return firstName;

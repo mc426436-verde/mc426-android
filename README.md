@@ -1,1 +1,1 @@
-# mc426-android
+# Dino Android Application

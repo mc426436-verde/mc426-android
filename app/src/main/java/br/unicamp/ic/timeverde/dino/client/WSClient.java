@@ -4,8 +4,8 @@ package br.unicamp.ic.timeverde.dino.client;
 import br.unicamp.ic.timeverde.dino.client.service.UserService;
 import br.unicamp.ic.timeverde.dino.model.Token;
 import retrofit2.Call;
-import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class WSClient {
 
@@ -13,16 +13,11 @@ public class WSClient {
 
     private Retrofit mRetrofit;
 
-    private ResponseListener mCallback;
-
     private WSClient() {
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(ApiConfiguration.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
-    }
-
-    public void setResponseCallback(ResponseListener callback) {
-        mCallback = callback;
     }
 
     public static WSClient getInstance() {
@@ -32,7 +27,8 @@ public class WSClient {
         return sInstance;
     }
 
-    public String autenthicate(String email, String password) {
-        return null;
+    public Call<Token> autenthicate(String email, String password) {
+        UserService userService = mRetrofit.create(UserService.class);
+        return userService.authenticate(email, password);
     }
 }

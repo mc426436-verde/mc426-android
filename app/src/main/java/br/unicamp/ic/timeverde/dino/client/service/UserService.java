@@ -8,5 +8,5 @@ import retrofit2.http.GET;
 public interface UserService {
 
     @GET("/oauth/token")
-    Call<Token> authorize();
+    Call<Token> authenticate(String username, String password);
 }
