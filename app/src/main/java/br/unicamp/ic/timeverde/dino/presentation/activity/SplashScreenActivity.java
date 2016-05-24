@@ -19,7 +19,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        if (((DinoApplication) getApplication()).isLogged()){
+        if (DinoApplication.getApplication().isLogged()){
             startActivity(new Intent(this, MainActivity.class));
         } else {
             startActivity(new Intent(this, LoginActivity.class));

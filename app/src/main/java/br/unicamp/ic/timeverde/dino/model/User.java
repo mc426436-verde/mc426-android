@@ -13,10 +13,9 @@ public class User implements Serializable {
 
     private String firstName;
     private String lastName;
+    @SerializedName("email")
     private String username;
     private String password;
-    @SerializedName("access_token")
-    private String accessToken;
     private List<String> authorities;
     private Token token;
 
@@ -58,14 +57,6 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getAccessToken() {
-        return accessToken;
-    }
-
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
     }
 
     public List<String> getAuthorities() {

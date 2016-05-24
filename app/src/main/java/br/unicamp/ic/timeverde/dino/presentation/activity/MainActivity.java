@@ -58,9 +58,6 @@ public class MainActivity extends AppCompatActivity {
         //TODO A existência ja eh verificada na SplashScreen Activity
         // aqui pode ser verificado a validade do token e a
         // conexão
-        if (!((DinoApplication) getApplication()).isLogged()) {
-            doLogout();
-        }
 
         // Seta o view e faz o bind
         setContentView(R.layout.activity_main);
@@ -139,19 +136,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Limpa o token e chama a Activity de Login
-     */
-    private void doLogout() {
-        ((DinoApplication) getApplication()).logout();
-        final Intent intent = new Intent(this, LoginActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        startActivity(intent);
-        finish();
-    }
-
-    /**
+    /*
      * Seleciona item do NavigationDrawer
      *
      * @param menuItem
@@ -189,7 +174,9 @@ public class MainActivity extends AppCompatActivity {
                 mFrameLayout.setVisibility(View.VISIBLE);
                 break;
             case R.id.nav_drawer_logout_item:
-                doLogout();
+                DinoApplication.getApplication().logout();
+                startActivity(new Intent(this, LoginActivity.class));
+                finish();
                 break;
         }
 

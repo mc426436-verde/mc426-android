@@ -9,6 +9,7 @@ import br.unicamp.ic.timeverde.dino.model.User;
 public class DinoApplication extends Application {
 
     private static DinoApplication mApplication;
+    private User mUser;
 
     @Override
     public void onCreate() {
@@ -35,13 +36,24 @@ public class DinoApplication extends Application {
         editor.apply();
     }
 
-    public void setAccount(User user) {
+    public void setAccount(User user, boolean persist) {
+        mUser = user;
+        if (persist) saveAccountOnSharedPreferences(user);
+    }
+
+    public User getAccount() {
+        return mUser;
+    }
+
+    public void saveAccountOnSharedPreferences(User user) {
         SharedPreferences sharedPreferences = getSharedPreferences(Constants.USER_ACCOUNT_PREFERENCE, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.putString(Constants.USER_USERNAME, user.getUsername());
         editor.putString(Constants.USER_TOKEN, user.getToken().getAccessToken());
-        editor.putString(Constants.USER_NAME, user.getFirstName() + user.getLastName());
+        if (user.getFirstName() != null && user.getLastName() != null) {
+            editor.putString(Constants.USER_NAME, user.getFirstName() + user.getLastName());
+        }
 
         editor.apply();
     }
