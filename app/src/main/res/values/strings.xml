@@ -8,4 +8,8 @@
     <string name="enter">Entrar</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="action_settings">Settings</string>
+
+    <!-- Room Fragment -->
+    <string name="garden_uppercase">GARDEN</string>
+    <string name="bedroom_uppercase">BEDROOM</string>
 </resources>
