@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="15dp">
+    <TextView
+        android:id="@+id/header_device_list_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/font_size_subheading"
+        android:textColor="@color/colorPrimary"
+        android:text="Lâmpadas"
+        android:paddingBottom="15dp"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/icon_device_list_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_bulb_off"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="10dp">
+            <TextView
+                android:id="@+id/name_device_list_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDeviceItemName"
+                android:textSize="@dimen/font_size_title"
+                android:text="Principal"/>
+            <TextView
+                android:id="@+id/room_device_list_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/font_size_subheading"
+                android:text="Quarto casal"/>
+            <LinearLayout
+                android:id="@+id/divider_device_list_item"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorDeviceItemDivider"
+                android:visibility="gone"
+                android:orientation="horizontal"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
