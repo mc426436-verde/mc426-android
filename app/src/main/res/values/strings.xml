@@ -18,7 +18,4 @@
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
 
-    <!-- Room Fragment -->
-    <string name="garden_uppercase">GARDEN</string>
-    <string name="bedroom_uppercase">BEDROOM</string>
 </resources>

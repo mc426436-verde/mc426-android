@@ -24,6 +24,7 @@
             android:id="@+id/login_user_email_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
             android:minWidth="250dp"
             android:maxLength="30"
             android:singleLine="true"

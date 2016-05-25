@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="180dp"
+              android:background="@mipmap/garden_backgoud_card"
+              android:gravity="center"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/room_fragment_card_text"
+        style="@style/CardTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLength="15"
+        android:text="JARDIM"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/room_fragment_turn_off_light_image"
+            style="@style/LightIconRoomCard"
+            android:src="@mipmap/ic_launcher"/>
+
+        <TextView
+            android:id="@+id/room_fragment_turn_off_light_text"
+            style="@style/LightTextRoomCard"
+            android:text="3"/>
+
+        <ImageView
+            android:id="@+id/room_fragment_turn_on_light_image"
+            style="@style/LightIconRoomCard"
+            android:src="@mipmap/ic_launcher"/>
+
+        <TextView
+            android:id="@+id/room_fragment_turn_on_light_text"
+            style="@style/LightTextRoomCard"
+            android:text="2"/>
+    </LinearLayout>
+</LinearLayout>
