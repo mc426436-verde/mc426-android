@@ -9,17 +9,22 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import br.unicamp.ic.timeverde.dino.R;
+import br.unicamp.ic.timeverde.dino.model.Device;
 
 /**
  * Adapter para o RecyclerView do Fragment de Devices
  */
 public class DeviceFragmentAdapter extends RecyclerView.Adapter<DeviceFragmentAdapter.ViewHolder> {
-    private ArrayList<String> mDataset;
+
+    private List<Device> mDeviceList;
+    private Callback mCallback;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
+        public View rootView;
         public TextView mItemHeader;
         public TextView mItemName;
         public TextView mItemRoom;
@@ -29,6 +34,7 @@ public class DeviceFragmentAdapter extends RecyclerView.Adapter<DeviceFragmentAd
 
         public ViewHolder(View v) {
             super(v);
+            rootView = v;
             mItemHeader = (TextView) v.findViewById(R.id.header_device_list_item);
             mItemName = (TextView) v.findViewById(R.id.name_device_list_item);
             mItemRoom = (TextView) v.findViewById(R.id.room_device_list_item);
@@ -37,9 +43,19 @@ public class DeviceFragmentAdapter extends RecyclerView.Adapter<DeviceFragmentAd
         }
     }
 
-    public DeviceFragmentAdapter(ArrayList<String> mDataset) {
-        //TODO recebe e seta o data set
-        this.mDataset = mDataset;
+    public interface Callback {
+        void onDeviceClickToggle(Device device, int position);
+    }
+
+    public DeviceFragmentAdapter(Callback callback) {
+        mDeviceList = new ArrayList<>();
+        mCallback = callback;
+    }
+
+    public void updateDeviceList(List<Device> deviceList) {
+        mDeviceList.clear();
+        mDeviceList.addAll(deviceList);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -52,17 +68,24 @@ public class DeviceFragmentAdapter extends RecyclerView.Adapter<DeviceFragmentAd
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
+        final Device device = mDeviceList.get(position);
         if (position == 0){
             holder.mItemHeader.setVisibility(View.VISIBLE);
         }
-       holder.mItemName.setText(mDataset.get(position));
-
+        holder.mItemName.setText(device.getDeviceName());
+        holder.mItemStatusIcon.setSelected("ON".equals(device.getStatus()));
+        holder.rootView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCallback.onDeviceClickToggle(device, holder.getAdapterPosition());
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return mDataset.size();
+        return mDeviceList.size();
     }
 }
 

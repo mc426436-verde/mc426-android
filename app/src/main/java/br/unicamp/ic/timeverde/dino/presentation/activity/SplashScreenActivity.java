@@ -20,6 +20,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         if (DinoApplication.getApplication().isLogged()){
+            DinoApplication.getApplication().setAccountFromSharedPreferences();
             startActivity(new Intent(this, MainActivity.class));
         } else {
             startActivity(new Intent(this, LoginActivity.class));

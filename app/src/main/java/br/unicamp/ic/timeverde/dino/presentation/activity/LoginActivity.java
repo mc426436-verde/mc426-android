@@ -127,7 +127,6 @@ public class LoginActivity extends AppCompatActivity {
         String password = mInputPassword.getText().toString();
 
         return !email.isEmpty() &&
-                StringUtils.isValidEmail(email) &&
                 !password.isEmpty();
     }
 

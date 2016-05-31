@@ -12,4 +12,6 @@ public class Constants {
     public final static String USER_USERNAME = "user-username";
 
     public final static String USER_NAME = "user-name";
+
+    public final static String USER_TOKEN_TYPE = "user-token-type";
 }

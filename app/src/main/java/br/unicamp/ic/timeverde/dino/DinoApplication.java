@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.SharedPreferences;
 
 import br.unicamp.ic.timeverde.dino.helper.Constants;
+import br.unicamp.ic.timeverde.dino.model.Token;
 import br.unicamp.ic.timeverde.dino.model.User;
 
 public class DinoApplication extends Application {
@@ -51,10 +52,22 @@ public class DinoApplication extends Application {
 
         editor.putString(Constants.USER_USERNAME, user.getUsername());
         editor.putString(Constants.USER_TOKEN, user.getToken().getAccessToken());
+        editor.putString(Constants.USER_TOKEN_TYPE, user.getToken().getTokenType());
         if (user.getFirstName() != null && user.getLastName() != null) {
             editor.putString(Constants.USER_NAME, user.getFirstName() + user.getLastName());
         }
-
         editor.apply();
+    }
+
+    public void setAccountFromSharedPreferences() {
+        SharedPreferences sharedPreferences = getSharedPreferences(Constants.USER_ACCOUNT_PREFERENCE, MODE_PRIVATE);
+        User user = new User();
+        Token token = new Token();
+        user.setUsername(sharedPreferences.getString(Constants.USER_USERNAME, ""));
+        user.setFirstName(sharedPreferences.getString(Constants.USER_NAME, ""));
+        token.setAccessToken(sharedPreferences.getString(Constants.USER_TOKEN, ""));
+        token.setTokenType(sharedPreferences.getString(Constants.USER_TOKEN_TYPE, ""));
+        user.setToken(token);
+        mUser = user;
     }
 }
