@@ -3,37 +3,47 @@
               android:layout_width="match_parent"
               android:layout_height="180dp"
               android:background="@mipmap/garden_backgoud_card"
-              android:gravity="center"
+              android:gravity="center|bottom"
               android:orientation="vertical">
 
     <TextView
         android:id="@+id/room_fragment_card_text"
-        style="@style/CardTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginRight="20sp"
+        android:gravity="right"
         android:maxLength="15"
-        android:text="JARDIM"/>
+        android:paddingBottom="20dp"
+        android:text="JARDIM"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:textStyle="bold"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingBottom="20dp">
 
         <ImageView
             android:id="@+id/room_fragment_turn_off_light_image"
-            style="@style/LightIconRoomCard"
-            android:src="@mipmap/ic_launcher"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_room_bulb_off"/>
 
         <TextView
             android:id="@+id/room_fragment_turn_off_light_text"
             style="@style/LightTextRoomCard"
+            android:layout_marginRight="4dp"
             android:text="3"/>
 
         <ImageView
             android:id="@+id/room_fragment_turn_on_light_image"
-            style="@style/LightIconRoomCard"
-            android:src="@mipmap/ic_launcher"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:src="@drawable/ic_room_bulb_on"/>
 
         <TextView
             android:id="@+id/room_fragment_turn_on_light_text"

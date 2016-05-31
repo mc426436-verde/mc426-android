@@ -11,9 +11,9 @@
         android:layout_height="wrap_content"
         android:textSize="@dimen/font_size_subheading"
         android:textColor="@color/colorPrimary"
-        android:text="Lâmpadas"
         android:paddingBottom="15dp"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        android:text="LÂMPADAS"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
             android:id="@+id/icon_device_list_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_bulb_off"/>
+            android:src="@drawable/toggle_device_bulb"/>
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"

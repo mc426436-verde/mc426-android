@@ -23,16 +23,12 @@ public class RoomFragmentAdapter extends RecyclerView.Adapter<RoomFragmentAdapte
         public TextView mItemRoom;
         public TextView mItemOnNumber;
         public TextView mItemOffNumber;
-        public ImageView mItemOnIcon;
-        public ImageView mItemOffIcon;
 
         public ViewHolder(View v) {
             super(v);
             mItemRoom = (TextView) v.findViewById(R.id.room_fragment_card_text);
             mItemOnNumber = (TextView) v.findViewById(R.id.room_fragment_turn_on_light_text);
             mItemOffNumber = (TextView) v.findViewById(R.id.room_fragment_turn_off_light_text);
-            mItemOnIcon = (ImageView) v.findViewById(R.id.room_fragment_turn_on_light_image);
-            mItemOffIcon = (ImageView) v.findViewById(R.id.room_fragment_turn_off_light_image);
         }
     }
 

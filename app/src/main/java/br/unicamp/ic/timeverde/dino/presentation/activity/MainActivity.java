@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import br.unicamp.ic.timeverde.dino.DinoApplication;
 import br.unicamp.ic.timeverde.dino.R;
@@ -115,6 +116,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Marca o primeiro como seleiconado
         mNavigationView.getMenu().getItem(0).setChecked(true);
+        ((TextView) mNavigationView.getHeaderView(0).findViewById(R.id.nav_drawer_profile_email)).setText
+                (DinoApplication.getApplication().getAccount().getUsername());
 
         // Adiciona botao hamburguer
         mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string

@@ -10,5 +10,5 @@ public class ApiConfiguration {
         public static final String SCOPE = "read write";
     }
 
-    public static final String BASE_URL = "http://177.220.85.187:8080";
+    public static final String BASE_URL = "https://dino-green.herokuapp.com";
 }

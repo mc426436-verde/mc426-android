@@ -58,6 +58,15 @@ public class DeviceFragmentAdapter extends RecyclerView.Adapter<DeviceFragmentAd
         notifyDataSetChanged();
     }
 
+    public void updateSingleDevice(Device device) {
+        int position = 0;
+        while (position != -1) {
+            if (device.getId() == mDeviceList.get(position).getId()) mDeviceList.set(position, device);
+            notifyItemChanged(position);
+            position = -1;
+        }
+    }
+
     @Override
     public DeviceFragmentAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                    int viewType) {

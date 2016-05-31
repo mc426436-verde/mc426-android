@@ -127,13 +127,14 @@ public class DeviceFragment extends Fragment implements SwipeRefreshLayout.OnRef
         });
     }
 
-    public void toggleDevice(Device device) {
+    public void toggleDevice(final Device device) {
         Call<Device> call = WSClient.getInstance().toggleDevice(device.getId());
         call.enqueue(new Callback<Device>() {
             @Override
             public void onResponse(Call<Device> call, Response<Device> response) {
                 if (response != null && response.code() == 200) {
                     Log.d(TAG, "Device toggle success!");
+                    mDeviceFragmentAdapter.updateSingleDevice(response.body());
                 }
             }
 

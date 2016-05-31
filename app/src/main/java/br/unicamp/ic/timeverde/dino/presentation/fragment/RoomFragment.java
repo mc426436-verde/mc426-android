@@ -45,7 +45,7 @@ public class RoomFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mRoomFragmentAdapter = new RoomFragmentAdapter(new ArrayList<>(Arrays.asList("Lâmpada","Outra Lâmpada")));
+        mRoomFragmentAdapter = new RoomFragmentAdapter(new ArrayList<>(Arrays.asList("Qarto Casal")));
         mRecyclerView.setAdapter(mRoomFragmentAdapter);
 
         return view;
