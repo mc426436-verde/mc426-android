@@ -1,40 +1,49 @@
 package br.unicamp.ic.timeverde.dino.adapter;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import br.unicamp.ic.timeverde.dino.R;
+import br.unicamp.ic.timeverde.dino.model.Room;
+import br.unicamp.ic.timeverde.dino.presentation.activity.DeviceRoomActivity;
 
 /**
  * Adapter para o RecyclerView do Fragment de Devices
  */
 public class RoomFragmentAdapter extends RecyclerView.Adapter<RoomFragmentAdapter.ViewHolder> {
-    private ArrayList<String> mDataset;
+    private List<Room> mRoomList;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView mItemRoom;
         public TextView mItemOnNumber;
         public TextView mItemOffNumber;
+        public View mRootView;
 
         public ViewHolder(View v) {
             super(v);
             mItemRoom = (TextView) v.findViewById(R.id.room_fragment_card_text);
             mItemOnNumber = (TextView) v.findViewById(R.id.room_fragment_turn_on_light_text);
             mItemOffNumber = (TextView) v.findViewById(R.id.room_fragment_turn_off_light_text);
+            mRootView = v.findViewById(R.id.room_root_view);
         }
     }
 
-    public RoomFragmentAdapter(ArrayList<String> mDataset) {
-        //TODO recebe e seta o data set
-        this.mDataset = mDataset;
+    public RoomFragmentAdapter() {
+        this.mRoomList = new ArrayList<>();
+    }
+
+    public void updateRoomList(List<Room> roomList) {
+        mRoomList.clear();
+        mRoomList.addAll(roomList);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -47,15 +56,22 @@ public class RoomFragmentAdapter extends RecyclerView.Adapter<RoomFragmentAdapte
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        // TODO Bind do view
-       holder.mItemRoom.setText(mDataset.get(position));
-
+    public void onBindViewHolder(ViewHolder holder, final int position) {
+        holder.mItemRoom.setText(mRoomList.get(position).getRoomName());
+        holder.mRootView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(v.getContext(), DeviceRoomActivity.class);
+                intent.putExtra("mRoomId", mRoomList.get(position).getId());
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return mDataset.size();
+        return mRoomList.size();
     }
 }
 

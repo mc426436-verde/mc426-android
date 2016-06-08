@@ -18,10 +18,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import br.unicamp.ic.timeverde.dino.DinoApplication;
 import br.unicamp.ic.timeverde.dino.R;
 import br.unicamp.ic.timeverde.dino.adapter.DeviceFragmentAdapter;
 import br.unicamp.ic.timeverde.dino.client.WSClient;
 import br.unicamp.ic.timeverde.dino.model.Device;
+import br.unicamp.ic.timeverde.dino.model.User;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
@@ -31,7 +33,7 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DeviceFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
+public class DeviceFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private static final String TAG = DeviceFragment.class.getSimpleName();
 
@@ -79,10 +81,19 @@ public class DeviceFragment extends Fragment implements SwipeRefreshLayout.OnRef
             public void onDeviceClickToggle(Device device, int position) {
                 toggleDevice(device);
             }
-        });
+        }, getActivity());
         mRecyclerView.setAdapter(mDeviceFragmentAdapter);
 
         mSwipeRefreshLayout.setOnRefreshListener(this);
+
+        mSwipeRefreshLayout.setRefreshing(true);
+
+        mUiHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                mSwipeRefreshLayout.setRefreshing(true);
+            }
+        });
 
         return view;
     }
@@ -94,11 +105,32 @@ public class DeviceFragment extends Fragment implements SwipeRefreshLayout.OnRef
         mUiHandler = new Handler(Looper.getMainLooper());
 
         requestDevicesByUser();
+
+        if (DinoApplication.getApplication().getAccount().getAdmin()) requestAllUsers();
     }
 
     @Override
     public void onRefresh() {
         requestDevicesByUser();
+    }
+
+    public void requestAllUsers() {
+        Call<List<User>> call = WSClient.getInstance().getAllUsers();
+        call.enqueue(new Callback<List<User>>() {
+            @Override
+            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                if (response != null && response.code() == 200) {
+                    Log.d(TAG, "User list retrieved successfully!");
+                    mDeviceFragmentAdapter.setAllUsers(response.body());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<User>> call, Throwable t) {
+
+            }
+        });
     }
 
     public void requestDevicesByUser() {
@@ -129,12 +161,20 @@ public class DeviceFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
     public void toggleDevice(final Device device) {
         Call<Device> call = WSClient.getInstance().toggleDevice(device.getId());
+
         call.enqueue(new Callback<Device>() {
             @Override
             public void onResponse(Call<Device> call, Response<Device> response) {
                 if (response != null && response.code() == 200) {
                     Log.d(TAG, "Device toggle success!");
-                    mDeviceFragmentAdapter.updateSingleDevice(response.body());
+                    final Device updatedDevice = response.body();
+                    mUiHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            mDeviceFragmentAdapter.updateSingleDevice(updatedDevice);
+                            mSwipeRefreshLayout.setRefreshing(false);
+                        }
+                    });
                 }
             }
 

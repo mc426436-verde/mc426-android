@@ -5,8 +5,10 @@ import java.util.List;
 
 import br.unicamp.ic.timeverde.dino.DinoApplication;
 import br.unicamp.ic.timeverde.dino.client.service.DeviceService;
+import br.unicamp.ic.timeverde.dino.client.service.RoomService;
 import br.unicamp.ic.timeverde.dino.client.service.UserService;
 import br.unicamp.ic.timeverde.dino.model.Device;
+import br.unicamp.ic.timeverde.dino.model.Room;
 import br.unicamp.ic.timeverde.dino.model.Token;
 import br.unicamp.ic.timeverde.dino.model.User;
 import retrofit2.Call;
@@ -37,10 +39,10 @@ public class WSClient {
     public Call<Token> autenthicate(String email, String password) {
         UserService userService = mRetrofit.create(UserService.class);
         return userService.authenticate(ApiConfiguration.Credential.CLIENT_ID,
-                                        ApiConfiguration.Credential.CLIENT_SECRET,
-                                        ApiConfiguration.Credential.GRANT_TYPE,
-                                        ApiConfiguration.Credential.SCOPE,
-                                        email, password);
+                ApiConfiguration.Credential.CLIENT_SECRET,
+                ApiConfiguration.Credential.GRANT_TYPE,
+                ApiConfiguration.Credential.SCOPE,
+                email, password);
     }
 
     public Call<User> authorizeUser(String accessToken) {
@@ -49,17 +51,36 @@ public class WSClient {
     }
 
     public Call<List<Device>> deviceListByUser() {
+        DeviceService deviceService = mRetrofit.create(DeviceService.class);
+        return deviceService.deviceListByUser(getAuthorizatonToken());
+    }
+
+    public Call<List<Room>> deviceRoomByUser() {
         User userSession = DinoApplication.getApplication().getAccount();
         StringBuilder authorization = new StringBuilder();
         authorization.append(userSession.getToken().getTokenType());
         authorization.append(" ");
         authorization.append(userSession.getToken().getAccessToken());
-        DeviceService deviceService = mRetrofit.create(DeviceService.class);
-        return deviceService.deviceListByUser(authorization.toString());
+        RoomService roomService = mRetrofit.create(RoomService.class);
+        return roomService.roomListByUser(authorization.toString());
     }
 
     public Call<Device> toggleDevice(Long id) {
         DeviceService deviceService = mRetrofit.create(DeviceService.class);
         return deviceService.toggleDevice(id);
+    }
+
+    public Call<List<User>> getAllUsers() {
+        UserService userService = mRetrofit.create(UserService.class);
+        return userService.getUsers(getAuthorizatonToken());
+    }
+
+    private String getAuthorizatonToken() {
+        User userSession = DinoApplication.getApplication().getAccount();
+        StringBuilder authorization = new StringBuilder();
+        authorization.append(userSession.getToken().getTokenType());
+        authorization.append(" ");
+        authorization.append(userSession.getToken().getAccessToken());
+        return authorization.toString();
     }
 }

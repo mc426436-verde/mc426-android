@@ -15,7 +15,6 @@ import br.unicamp.ic.timeverde.dino.R;
 import br.unicamp.ic.timeverde.dino.client.WSClient;
 import br.unicamp.ic.timeverde.dino.model.Token;
 import br.unicamp.ic.timeverde.dino.model.User;
-import br.unicamp.ic.timeverde.dino.utils.StringUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -64,6 +63,9 @@ public class LoginActivity extends AppCompatActivity {
                         Token responseToken = response.body();
                         mTemporaryUser.setToken(responseToken);
                         validateUser();
+                    } else {
+                        stopProgress();
+                        Toast.makeText(LoginActivity.this, "Login falhou!", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -96,6 +98,8 @@ public class LoginActivity extends AppCompatActivity {
                     permanentUser.setToken(mTemporaryUser.getToken());
                     DinoApplication.getApplication().setAccount(permanentUser, true);
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                } else {
+                    stopProgress();
                 }
             }
 

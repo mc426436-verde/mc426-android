@@ -14,4 +14,6 @@ public class Constants {
     public final static String USER_NAME = "user-name";
 
     public final static String USER_TOKEN_TYPE = "user-token-type";
+
+    public final static String USER_IS_ADMIN = "user-is-admin";
 }

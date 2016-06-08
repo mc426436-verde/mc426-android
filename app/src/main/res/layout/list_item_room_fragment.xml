@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/room_root_view"
               android:layout_width="match_parent"
               android:layout_height="180dp"
               android:background="@mipmap/garden_backgoud_card"
@@ -24,30 +25,34 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
-        android:paddingBottom="20dp">
+        android:paddingBottom="40dp">
 
         <ImageView
             android:id="@+id/room_fragment_turn_off_light_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_room_bulb_off"/>
+            android:src="@drawable/ic_room_bulb_off"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/room_fragment_turn_off_light_text"
             style="@style/LightTextRoomCard"
             android:layout_marginRight="4dp"
-            android:text="3"/>
+            android:text="3"
+            android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/room_fragment_turn_on_light_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
-            android:src="@drawable/ic_room_bulb_on"/>
+            android:src="@drawable/ic_room_bulb_on"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/room_fragment_turn_on_light_text"
             style="@style/LightTextRoomCard"
-            android:text="2"/>
+            android:text="2"
+            android:visibility="gone"/>
     </LinearLayout>
 </LinearLayout>

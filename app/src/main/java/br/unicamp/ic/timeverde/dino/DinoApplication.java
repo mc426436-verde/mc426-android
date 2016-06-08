@@ -38,6 +38,7 @@ public class DinoApplication extends Application {
     }
 
     public void setAccount(User user, boolean persist) {
+        user.setAdmin(user.getAuthorities().contains(User.ROLE_ADMIN));
         mUser = user;
         if (persist) saveAccountOnSharedPreferences(user);
     }
@@ -53,6 +54,7 @@ public class DinoApplication extends Application {
         editor.putString(Constants.USER_USERNAME, user.getUsername());
         editor.putString(Constants.USER_TOKEN, user.getToken().getAccessToken());
         editor.putString(Constants.USER_TOKEN_TYPE, user.getToken().getTokenType());
+        editor.putBoolean(Constants.USER_IS_ADMIN, user.getAdmin());
         if (user.getFirstName() != null && user.getLastName() != null) {
             editor.putString(Constants.USER_NAME, user.getFirstName() + user.getLastName());
         }
@@ -68,6 +70,7 @@ public class DinoApplication extends Application {
         token.setAccessToken(sharedPreferences.getString(Constants.USER_TOKEN, ""));
         token.setTokenType(sharedPreferences.getString(Constants.USER_TOKEN_TYPE, ""));
         user.setToken(token);
+        user.setAdmin(sharedPreferences.getBoolean(Constants.USER_IS_ADMIN,false));
         mUser = user;
     }
 }

@@ -1,6 +1,8 @@
 package br.unicamp.ic.timeverde.dino.client.service;
 
 
+import java.util.List;
+
 import br.unicamp.ic.timeverde.dino.model.Token;
 import br.unicamp.ic.timeverde.dino.model.User;
 import retrofit2.Call;
@@ -23,4 +25,7 @@ public interface UserService {
 
     @GET("/api/account")
     Call<User> authorizeUser(@Header("Authorization")String accessToken);
+
+    @GET("/api/users")
+    Call<List<User>> getUsers(@Header("Authorization")String accessToken);
 }

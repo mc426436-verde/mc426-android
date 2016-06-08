@@ -1,6 +1,7 @@
 package br.unicamp.ic.timeverde.dino.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
 
 public class Device implements Serializable {
@@ -9,6 +10,7 @@ public class Device implements Serializable {
     private String deviceName;
     private String deviceDescription;
     private String status;
+    private Set<User> users;
 
     public Long getId() {
         return id;
@@ -40,5 +42,13 @@ public class Device implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 }

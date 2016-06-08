@@ -162,20 +162,20 @@ public class MainActivity extends AppCompatActivity {
                 mTabLayout.setVisibility(View.VISIBLE);
                 mFrameLayout.setVisibility(View.GONE);
                 break;
-            case R.id.nav_drawer_account_item:
-                setTitle(menuItem.getTitle());
-                mViewPager.setVisibility(View.GONE);
-                mTabLayout.setVisibility(View.GONE);
-                fragment = new AccountFragment();
-                mFrameLayout.setVisibility(View.VISIBLE);
-                break;
-            case R.id.nav_drawer_accounts_item:
-                setTitle(menuItem.getTitle());
-                mViewPager.setVisibility(View.GONE);
-                mTabLayout.setVisibility(View.GONE);
-                fragment = new AccountsFragment();
-                mFrameLayout.setVisibility(View.VISIBLE);
-                break;
+//            case R.id.nav_drawer_account_item:
+//                setTitle(menuItem.getTitle());
+//                mViewPager.setVisibility(View.GONE);
+//                mTabLayout.setVisibility(View.GONE);
+//                fragment = new AccountFragment();
+//                mFrameLayout.setVisibility(View.VISIBLE);
+//                break;
+//            case R.id.nav_drawer_accounts_item:
+//                setTitle(menuItem.getTitle());
+//                mViewPager.setVisibility(View.GONE);
+//                mTabLayout.setVisibility(View.GONE);
+//                fragment = new AccountsFragment();
+//                mFrameLayout.setVisibility(View.VISIBLE);
+//                break;
             case R.id.nav_drawer_logout_item:
                 DinoApplication.getApplication().logout();
                 startActivity(new Intent(this, LoginActivity.class));

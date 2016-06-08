@@ -18,6 +18,7 @@ public class User implements Serializable {
     private String password;
     private List<String> authorities;
     private Token token;
+    private Boolean isAdmin;
 
     public Token getToken() {
         return token;
@@ -65,5 +66,36 @@ public class User implements Serializable {
 
     public void setAuthorities(List<String> authorities) {
         this.authorities = authorities;
+    }
+
+    public Boolean getAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        isAdmin = admin;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        User user = (User) o;
+
+        if (!username.equals(user.getUsername())) {
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return username.hashCode();
     }
 }
