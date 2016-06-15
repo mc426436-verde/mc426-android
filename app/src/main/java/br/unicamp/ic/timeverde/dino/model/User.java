@@ -4,6 +4,7 @@ package br.unicamp.ic.timeverde.dino.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 public class User implements Serializable {
@@ -19,6 +20,12 @@ public class User implements Serializable {
     private List<String> authorities;
     private Token token;
     private Boolean isAdmin;
+    private boolean activated;
+    private Long id;
+    private String langKey;
+    private String login;
+    private Date resetDate;
+    private String resetKey;
 
     public Token getToken() {
         return token;
@@ -74,6 +81,54 @@ public class User implements Serializable {
 
     public void setAdmin(Boolean admin) {
         isAdmin = admin;
+    }
+
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getLangKey() {
+        return langKey;
+    }
+
+    public void setLangKey(String langKey) {
+        this.langKey = langKey;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public Date getResetDate() {
+        return resetDate;
+    }
+
+    public void setResetDate(Date resetDate) {
+        this.resetDate = resetDate;
+    }
+
+    public String getResetKey() {
+        return resetKey;
+    }
+
+    public void setResetKey(String resetKey) {
+        this.resetKey = resetKey;
     }
 
     @Override
