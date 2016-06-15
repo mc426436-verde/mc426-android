@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="180dp"
+                android:background="@android:color/holo_blue_dark">
+
+    <TextView
+        android:id="@+id/macro_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Blablabal"
+        android:textSize="30sp"
+        android:textAllCaps="true"
+        android:textColor="@color/white"/>
+
+    <LinearLayout
+        android:id="@+id/macro_light_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/macro_name">
+
+        <TextView
+            android:id="@+id/macro_light_off_qty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:drawableLeft="@drawable/ic_light_off"
+            android:drawablePadding="6dp"
+            android:text="5"/>
+
+        <TextView
+            android:id="@+id/macro_light_on_qty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:gravity="center"
+            android:drawableLeft="@drawable/ic_light_on"
+            android:drawablePadding="6dp"
+            android:text="3"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

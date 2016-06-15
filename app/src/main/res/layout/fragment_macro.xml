@@ -4,11 +4,16 @@
              android:layout_height="match_parent"
              tools:context="br.unicamp.ic.timeverde.dino.presentation.fragment.RoomFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+<android.support.v4.widget.SwipeRefreshLayout
+    android:id="@+id/fragment_macro_refresh_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fragment_macro_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Novas funcionalidades serão adicionadas na próxima atualização. Aguarde."/>
+        android:layout_height="match_parent" />
+
+</android.support.v4.widget.SwipeRefreshLayout>
 
 </FrameLayout>

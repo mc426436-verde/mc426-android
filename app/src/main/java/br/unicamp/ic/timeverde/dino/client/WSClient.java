@@ -5,9 +5,11 @@ import java.util.List;
 
 import br.unicamp.ic.timeverde.dino.DinoApplication;
 import br.unicamp.ic.timeverde.dino.client.service.DeviceService;
+import br.unicamp.ic.timeverde.dino.client.service.MacroService;
 import br.unicamp.ic.timeverde.dino.client.service.RoomService;
 import br.unicamp.ic.timeverde.dino.client.service.UserService;
 import br.unicamp.ic.timeverde.dino.model.Device;
+import br.unicamp.ic.timeverde.dino.model.Macro;
 import br.unicamp.ic.timeverde.dino.model.Room;
 import br.unicamp.ic.timeverde.dino.model.Token;
 import br.unicamp.ic.timeverde.dino.model.User;
@@ -34,6 +36,15 @@ public class WSClient {
             sInstance = new WSClient();
         }
         return sInstance;
+    }
+
+    private String getAuthorizatonToken() {
+        User userSession = DinoApplication.getApplication().getAccount();
+        StringBuilder authorization = new StringBuilder();
+        authorization.append(userSession.getToken().getTokenType());
+        authorization.append(" ");
+        authorization.append(userSession.getToken().getAccessToken());
+        return authorization.toString();
     }
 
     public Call<Token> autenthicate(String email, String password) {
@@ -75,12 +86,8 @@ public class WSClient {
         return userService.getUsers(getAuthorizatonToken());
     }
 
-    private String getAuthorizatonToken() {
-        User userSession = DinoApplication.getApplication().getAccount();
-        StringBuilder authorization = new StringBuilder();
-        authorization.append(userSession.getToken().getTokenType());
-        authorization.append(" ");
-        authorization.append(userSession.getToken().getAccessToken());
-        return authorization.toString();
+    public Call<List<Macro>> getMacroListByUser() {
+        MacroService macroService = mRetrofit.create(MacroService.class);
+        return macroService.macroListByUser(getAuthorizatonToken());
     }
 }
