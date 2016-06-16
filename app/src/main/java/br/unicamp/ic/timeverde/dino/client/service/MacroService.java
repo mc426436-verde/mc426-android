@@ -13,7 +13,7 @@ public interface MacroService {
     @GET("/api/macros")
     Call<List<Macro>> macroListByUser(@Header("Authorization") String accessToken);
 
-    @GET("/api/macro/run/{id}")
+    @GET("/api/macros/run/{id}")
     Call<Macro> activateMacroById(@Header("Authorization") String accessToken,
                                   @Path("id") Long id);
 }

@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.unicamp.ic.timeverde.dino.R;
-import br.unicamp.ic.timeverde.dino.model.Action;
 import br.unicamp.ic.timeverde.dino.model.Macro;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,29 +39,6 @@ public class MacroFragmentAdapter extends RecyclerView.Adapter<MacroFragmentAdap
     public void onBindViewHolder(final MacroViewHolder holder, final int position) {
         final Macro macro = mMacroList.get(position);
         holder.macroName.setText(macro.getName());
-        if (macro.getAction() != null && !macro.getAction().isEmpty()) {
-            int lightOnQty = 0, lightOffQty = 0;
-            for(Action action : macro.getAction()) {
-                switch (action.getStatus()) {
-                    case Action.STATUS_ON : {
-                        lightOnQty++;
-                        break;
-                    }
-                    case Action.STATUS_OFF : {
-                        lightOffQty++;
-                        break;
-                    }
-                }
-            }
-            holder.lightOn.setVisibility(View.VISIBLE);
-            holder.lightOn.setText(String.valueOf(lightOnQty));
-            holder.lightOff.setVisibility(View.VISIBLE);
-            holder.lightOff.setText(String.valueOf(lightOffQty));
-        } else {
-            holder.lightOff.setVisibility(View.INVISIBLE);
-            holder.lightOn.setVisibility(View.INVISIBLE);
-        }
-
         holder.rootView.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -92,10 +68,6 @@ public class MacroFragmentAdapter extends RecyclerView.Adapter<MacroFragmentAdap
         protected View rootView;
         @BindView(R.id.macro_name)
         protected TextView macroName;
-        @BindView(R.id.macro_light_off_qty)
-        protected TextView lightOff;
-        @BindView(R.id.macro_light_on_qty)
-        protected TextView lightOn;
 
         MacroViewHolder(View v) {
             super(v);

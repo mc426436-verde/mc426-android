@@ -1,57 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:background="@drawable/shape_macro_item_background"
-                android:foreground="?android:attr/selectableItemBackground">
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="180dp"
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    app:cardCornerRadius="2dp"
+                                    app:cardElevation="3dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"
+                                    android:layout_marginTop="4dp"
+                                    android:layout_marginBottom="4dp">
 
-    <TextView
-        android:id="@+id/macro_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:text="Quarto casal"
-        android:textAllCaps="true"
-        android:fontFamily="sans-serif-medium"
-        android:textColor="@color/white"
-        android:textSize="30sp"/>
-
-    <LinearLayout
-        android:id="@+id/macro_light_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/macro_name"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:orientation="horizontal">
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_macro_item_background"
+                    android:foreground="?android:attr/selectableItemBackground">
 
         <TextView
-            android:id="@+id/macro_light_off_qty"
+            android:id="@+id/macro_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_light_off"
-            android:drawablePadding="6dp"
+            android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="5"/>
+            android:text="Quarto casal"
+            android:textAllCaps="true"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/white"
+            android:textSize="30sp"/>
+    </RelativeLayout>
 
-        <TextView
-            android:id="@+id/macro_light_on_qty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:drawableLeft="@drawable/ic_light_on"
-            android:drawablePadding="6dp"
-            android:gravity="center"
-            android:text="3"/>
-
-    </LinearLayout>
-
-    <View
-        android:id="@+id/macro_item_divisor"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/white"
-        android:layout_alignParentBottom="true"/>
-
-</RelativeLayout>
+</android.support.v7.widget.CardView>
