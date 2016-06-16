@@ -3,6 +3,7 @@ package br.unicamp.ic.timeverde.dino.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +15,7 @@ import br.unicamp.ic.timeverde.dino.presentation.fragment.RoomFragment;
 /**
  * Adapter para MainPager
  */
-public class MainPagerAdapter extends FragmentPagerAdapter {
+public class MainPagerAdapter extends FragmentStatePagerAdapter {
 
     //Constante com o total de tabs
     final static int NUMBER_OF_TABS = 3;

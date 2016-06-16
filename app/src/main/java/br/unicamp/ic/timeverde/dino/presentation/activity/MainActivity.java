@@ -55,11 +55,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Caso não tenha o token vai para a tela de login
-        //TODO A existência ja eh verificada na SplashScreen Activity
-        // aqui pode ser verificado a validade do token e a
-        // conexão
-
         // Seta o view e faz o bind
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
@@ -75,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Seta listener do NavDrawer
         setUpNavigationDrawer();
-
     }
 
     /**

@@ -58,10 +58,6 @@ public class RoomFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         requestByUserRoom();
     }
 
-    public RoomFragment() {
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)  {
@@ -78,13 +74,6 @@ public class RoomFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         mRecyclerView.setAdapter(mRoomFragmentAdapter);
 
         mSwipeRefreshLayout.setOnRefreshListener(this);
-
-        mUiHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                mSwipeRefreshLayout.setRefreshing(true);
-            }
-        });
 
         return view;
     }

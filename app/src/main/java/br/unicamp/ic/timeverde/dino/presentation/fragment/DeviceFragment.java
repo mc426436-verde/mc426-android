@@ -86,15 +86,6 @@ public class DeviceFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
         mSwipeRefreshLayout.setOnRefreshListener(this);
 
-        mSwipeRefreshLayout.setRefreshing(true);
-
-        mUiHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                mSwipeRefreshLayout.setRefreshing(true);
-            }
-        });
-
         return view;
     }
 
