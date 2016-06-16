@@ -111,8 +111,12 @@ public class DeviceFragmentAdapter extends RecyclerView.Adapter<DeviceFragmentAd
         holder.rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (device.getUsers().contains(DinoApplication.getApplication().getAccount()))
+                if (device.getUsers().contains(DinoApplication.getApplication().getAccount())) {
                     mCallback.onDeviceClickToggle(device, holder.getAdapterPosition());
+                } else {
+                    Toast.makeText(mActivity, "Você não tem permissão para ativar o device.", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
         if (DinoApplication.getApplication().getAccount().getAdmin()) {

@@ -3,7 +3,6 @@
               android:id="@+id/room_root_view"
               android:layout_width="match_parent"
               android:layout_height="180dp"
-              android:background="@mipmap/garden_backgoud_card"
               android:gravity="center|bottom"
               android:orientation="vertical">
 

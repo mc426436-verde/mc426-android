@@ -6,10 +6,10 @@ import br.unicamp.ic.timeverde.dino.R;
  * The RoomTypeEnum enumeration.
  */
 public enum RoomTypeEnum {
-    BEDROOM(R.mipmap.garden_backgoud_card),
-    GARDEN(R.color.colorPrimaryLight),
+    BEDROOM(R.mipmap.bedroom_backgoud_card),
+    GARDEN(R.mipmap.garden_background_card),
     KITCHEN(R.color.colorPrimaryLight),
-    LIVINGROOM(R.color.colorPrimaryLight);
+    LIVINGROOM(R.mipmap.living_room_background_card);
 
     private Integer roomImage;
 
