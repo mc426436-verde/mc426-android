@@ -38,7 +38,7 @@ public class WSClient {
         return sInstance;
     }
 
-    private String getAuthorizatonToken() {
+    private String getAuthorizationToken() {
         User userSession = DinoApplication.getApplication().getAccount();
         StringBuilder authorization = new StringBuilder();
         authorization.append(userSession.getToken().getTokenType());
@@ -47,7 +47,7 @@ public class WSClient {
         return authorization.toString();
     }
 
-    public Call<Token> autenthicate(String email, String password) {
+    public Call<Token> authenticate(String email, String password) {
         UserService userService = mRetrofit.create(UserService.class);
         return userService.authenticate(ApiConfiguration.Credential.CLIENT_ID,
                 ApiConfiguration.Credential.CLIENT_SECRET,
@@ -63,7 +63,7 @@ public class WSClient {
 
     public Call<List<Device>> deviceListByUser() {
         DeviceService deviceService = mRetrofit.create(DeviceService.class);
-        return deviceService.deviceListByUser(getAuthorizatonToken());
+        return deviceService.deviceListByUser(getAuthorizationToken());
     }
 
     public Call<List<Room>> deviceRoomByUser() {
@@ -83,21 +83,21 @@ public class WSClient {
 
     public Call<List<User>> getAllUsers() {
         UserService userService = mRetrofit.create(UserService.class);
-        return userService.getUsers(getAuthorizatonToken());
+        return userService.getUsers(getAuthorizationToken());
     }
 
     public Call<List<Macro>> getMacroListByUser() {
         MacroService macroService = mRetrofit.create(MacroService.class);
-        return macroService.macroListByUser(getAuthorizatonToken());
+        return macroService.macroListByUser(getAuthorizationToken());
     }
-    
+
     public Call<Macro> activateMacroById(Long id) {
         MacroService macroService = mRetrofit.create(MacroService.class);
-        return macroService.activateMacroById(getAuthorizatonToken(), id);
+        return macroService.activateMacroById(getAuthorizationToken(), id);
     }
 
     public Call<Device> updateDevice(Device device) {
         DeviceService deviceService = mRetrofit.create(DeviceService.class);
-        return deviceService.updateDevice(getAuthorizatonToken(), device);
+        return deviceService.updateDevice(getAuthorizationToken(), device);
     }
 }

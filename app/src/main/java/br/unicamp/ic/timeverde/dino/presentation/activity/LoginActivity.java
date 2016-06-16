@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
             mTemporaryUser.setUsername(mInputLogin.getText().toString());
             mTemporaryUser.setPassword(mInputPassword.getText().toString());
 
-            Call<Token> tokenCall = WSClient.getInstance().autenthicate(mTemporaryUser.getUsername(), mTemporaryUser.getPassword());
+            Call<Token> tokenCall = WSClient.getInstance().authenticate(mTemporaryUser.getUsername(), mTemporaryUser.getPassword());
             tokenCall.enqueue(new Callback<Token>() {
                 @Override
                 public void onResponse(Call<Token> call, Response<Token> response) {
