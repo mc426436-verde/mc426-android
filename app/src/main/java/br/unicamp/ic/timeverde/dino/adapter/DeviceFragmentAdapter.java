@@ -102,13 +102,10 @@ public class DeviceFragmentAdapter extends RecyclerView.Adapter<DeviceFragmentAd
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         final Device device = mDeviceList.get(position);
         if (device.getUsers() == null) device.setUsers(new HashSet<User>());
-        if (position == 0) {
-            holder.mItemHeader.setText("LÂMPADAS");
-            holder.mItemHeader.setVisibility(View.VISIBLE);
-        }
         holder.mItemName.setText(device.getName());
         holder.mItemStatusIcon.setSelected("ON".equals(device.getStatus()));
-        holder.mItemRoom.setText(device.getRoom().getName());
+        if (device.getRoom() != null)
+            holder.mItemRoom.setText(device.getRoom().getName());
         holder.rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
