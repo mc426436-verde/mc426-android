@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import br.unicamp.ic.timeverde.dino.DinoApplication;
@@ -39,7 +38,7 @@ public class DeviceFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
     public static final String ROOM_ID = "room-id";
 
-    private String mRoomId;
+    private Long mRoomId;
 
     @BindView(R.id.device_recycler_view)
     RecyclerView mRecyclerView;
@@ -54,7 +53,7 @@ public class DeviceFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
     private Handler mUiHandler;
 
-    public DeviceFragment newInstance(Long roomId) {
+    public static DeviceFragment newInstance(Long roomId) {
         DeviceFragment fragment = new DeviceFragment();
         Bundle bundle = new Bundle();
         if (roomId != null) {
@@ -69,6 +68,8 @@ public class DeviceFragment extends Fragment implements SwipeRefreshLayout.OnRef
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_device, container, false);
         ButterKnife.bind(this, view);
+
+        if (getArguments() != null) mRoomId = getArguments().getLong(ROOM_ID, -1L);
 
         mRecyclerView.setHasFixedSize(true);
 
@@ -132,6 +133,19 @@ public class DeviceFragment extends Fragment implements SwipeRefreshLayout.OnRef
                 if (response != null && response.code() == 200) {
                     Log.d(TAG, "Device list retrieved successfully!");
                     mDeviceList = response.body();
+
+                    // Se veio de um quarto
+                    if (mRoomId != null && mRoomId != -1) {
+                        final ArrayList<Device> roomDevices = new ArrayList<>();
+                        for (Device device : mDeviceList) {
+                            if (device.getRoom() != null && mRoomId.equals(device.getRoom().getId())) {
+                                roomDevices.add(device);
+                            }
+                        }
+                        mDeviceList = roomDevices;
+                    }
+
+
                     // Run list update on UI thread
                     mUiHandler.post(new Runnable() {
                         @Override
@@ -175,4 +189,5 @@ public class DeviceFragment extends Fragment implements SwipeRefreshLayout.OnRef
             }
         });
     }
+
 }

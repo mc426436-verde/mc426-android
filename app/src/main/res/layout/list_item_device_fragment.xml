@@ -41,8 +41,7 @@
                 android:id="@+id/room_device_list_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/font_size_subheading"
-                android:text="Quarto casal"/>
+                android:textSize="@dimen/font_size_subheading"/>
             <LinearLayout
                 android:id="@+id/divider_device_list_item"
                 android:layout_width="match_parent"

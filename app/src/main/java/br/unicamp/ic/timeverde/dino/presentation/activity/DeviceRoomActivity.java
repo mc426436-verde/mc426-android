@@ -33,7 +33,8 @@ public class DeviceRoomActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.device_room_fragment_container, new DeviceFragment());
+        fragmentTransaction.replace(R.id.device_room_fragment_container, DeviceFragment.newInstance(getIntent()
+                .getLongExtra("mRoomId", -1L)));
         fragmentTransaction.commit();
     }
 

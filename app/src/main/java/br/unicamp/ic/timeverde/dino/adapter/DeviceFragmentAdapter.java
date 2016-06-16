@@ -108,6 +108,7 @@ public class DeviceFragmentAdapter extends RecyclerView.Adapter<DeviceFragmentAd
         }
         holder.mItemName.setText(device.getName());
         holder.mItemStatusIcon.setSelected("ON".equals(device.getStatus()));
+        holder.mItemRoom.setText(device.getRoom().getName());
         holder.rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

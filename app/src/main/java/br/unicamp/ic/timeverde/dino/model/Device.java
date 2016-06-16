@@ -10,6 +10,7 @@ public class Device implements Serializable {
     private String name;
     private String description;
     private String status;
+    private Room room;
     private Set<User> users;
 
     public Long getId() {
@@ -50,5 +51,13 @@ public class Device implements Serializable {
 
     public void setUsers(Set<User> users) {
         this.users = users;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
     }
 }
