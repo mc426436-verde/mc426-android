@@ -90,9 +90,14 @@ public class WSClient {
         MacroService macroService = mRetrofit.create(MacroService.class);
         return macroService.macroListByUser(getAuthorizatonToken());
     }
-
+    
     public Call<Macro> activateMacroById(Long id) {
         MacroService macroService = mRetrofit.create(MacroService.class);
         return macroService.activateMacroById(getAuthorizatonToken(), id);
+    }
+
+    public Call<Device> updateDevice(Device device) {
+        DeviceService deviceService = mRetrofit.create(DeviceService.class);
+        return deviceService.updateDevice(getAuthorizatonToken(), device);
     }
 }
