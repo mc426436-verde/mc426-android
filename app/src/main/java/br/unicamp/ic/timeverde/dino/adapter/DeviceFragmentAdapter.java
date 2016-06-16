@@ -15,16 +15,13 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 
 import br.unicamp.ic.timeverde.dino.DinoApplication;
 import br.unicamp.ic.timeverde.dino.R;
 import br.unicamp.ic.timeverde.dino.client.WSClient;
 import br.unicamp.ic.timeverde.dino.model.Device;
 import br.unicamp.ic.timeverde.dino.model.User;
-import br.unicamp.ic.timeverde.dino.presentation.fragment.DeviceFragment;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
@@ -109,7 +106,7 @@ public class DeviceFragmentAdapter extends RecyclerView.Adapter<DeviceFragmentAd
             holder.mItemHeader.setText("LÂMPADAS");
             holder.mItemHeader.setVisibility(View.VISIBLE);
         }
-        holder.mItemName.setText(device.getDeviceName());
+        holder.mItemName.setText(device.getName());
         holder.mItemStatusIcon.setSelected("ON".equals(device.getStatus()));
         holder.rootView.setOnClickListener(new View.OnClickListener() {
             @Override

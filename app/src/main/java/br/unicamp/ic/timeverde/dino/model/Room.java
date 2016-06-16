@@ -2,12 +2,16 @@ package br.unicamp.ic.timeverde.dino.model;
 
 import java.io.Serializable;
 
+import br.unicamp.ic.timeverde.dino.model.enums.RoomTypeEnum;
+
 
 public class Room implements Serializable {
 
     private Long id;
-    private String roomDescription;
-    private String roomName;
+    private String description;
+    private String name;
+    private RoomTypeEnum type;
+
 
     public Long getId() {
         return id;
@@ -17,19 +21,27 @@ public class Room implements Serializable {
         this.id = id;
     }
 
-    public String getRoomDescription() {
-        return roomDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setRoomDescription(String roomDescription) {
-        this.roomDescription = roomDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getRoomName() {
-        return roomName;
+    public String getName() {
+        return name;
     }
 
-    public void setRoomName(String roomName) {
-        this.roomName = roomName;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public RoomTypeEnum getType() {
+        return type;
+    }
+
+    public void setType(RoomTypeEnum type) {
+        this.type = type;
     }
 }

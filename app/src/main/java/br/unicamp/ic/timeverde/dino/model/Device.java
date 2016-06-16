@@ -7,8 +7,8 @@ import java.util.Set;
 public class Device implements Serializable {
 
     private Long id;
-    private String deviceName;
-    private String deviceDescription;
+    private String name;
+    private String description;
     private String status;
     private Set<User> users;
 
@@ -20,20 +20,20 @@ public class Device implements Serializable {
         this.id = id;
     }
 
-    public String getDeviceName() {
-        return deviceName;
+    public String getName() {
+        return name;
     }
 
-    public void setDeviceName(String deviceName) {
-        this.deviceName = deviceName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getDeviceDescription() {
-        return deviceDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDeviceDescription(String deviceDescription) {
-        this.deviceDescription = deviceDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getStatus() {

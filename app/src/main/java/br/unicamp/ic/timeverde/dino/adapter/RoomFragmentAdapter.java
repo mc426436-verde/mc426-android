@@ -1,5 +1,6 @@
 package br.unicamp.ic.timeverde.dino.adapter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.unicamp.ic.timeverde.dino.R;
+import br.unicamp.ic.timeverde.dino.model.Action;
 import br.unicamp.ic.timeverde.dino.model.Room;
 import br.unicamp.ic.timeverde.dino.presentation.activity.DeviceRoomActivity;
 
@@ -18,6 +20,7 @@ import br.unicamp.ic.timeverde.dino.presentation.activity.DeviceRoomActivity;
  * Adapter para o RecyclerView do Fragment de Devices
  */
 public class RoomFragmentAdapter extends RecyclerView.Adapter<RoomFragmentAdapter.ViewHolder> {
+    private final Context mContext;
     private List<Room> mRoomList;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -36,7 +39,8 @@ public class RoomFragmentAdapter extends RecyclerView.Adapter<RoomFragmentAdapte
         }
     }
 
-    public RoomFragmentAdapter() {
+    public RoomFragmentAdapter(Context context) {
+        this.mContext = context;
         this.mRoomList = new ArrayList<>();
     }
 
@@ -57,7 +61,10 @@ public class RoomFragmentAdapter extends RecyclerView.Adapter<RoomFragmentAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        holder.mItemRoom.setText(mRoomList.get(position).getRoomName());
+        final Room room = mRoomList.get(position);
+        holder.mItemRoom.setText(room.getName());
+        holder.mRootView.setBackground(mContext.getResources().getDrawable(room.getType()
+                .getRoomImage()));
         holder.mRootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

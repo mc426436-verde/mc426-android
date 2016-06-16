@@ -74,7 +74,7 @@ public class RoomFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mRoomFragmentAdapter = new RoomFragmentAdapter();
+        mRoomFragmentAdapter = new RoomFragmentAdapter(getContext());
         mRecyclerView.setAdapter(mRoomFragmentAdapter);
 
         mSwipeRefreshLayout.setOnRefreshListener(this);
