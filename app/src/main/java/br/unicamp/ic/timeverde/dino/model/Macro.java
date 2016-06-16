@@ -8,7 +8,7 @@ public class Macro implements Serializable {
     private Long id;
     private String name;
     private String description;
-    private List<Action> action;
+    private List<Action> actions;
 
     public Long getId() {
         return id;
@@ -35,10 +35,10 @@ public class Macro implements Serializable {
     }
 
     public List<Action> getAction() {
-        return action;
+        return actions;
     }
 
-    public void setAction(final List<Action> action) {
-        this.action = action;
+    public void setAction(final List<Action> actions) {
+        this.actions = actions;
     }
 }

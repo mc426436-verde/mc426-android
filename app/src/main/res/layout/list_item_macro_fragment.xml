@@ -1,35 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="180dp"
-                android:background="@android:color/holo_blue_dark">
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="@drawable/shape_macro_item_background"
+                android:foreground="?android:attr/selectableItemBackground">
 
     <TextView
         android:id="@+id/macro_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Blablabal"
-        android:textSize="30sp"
+        android:gravity="center"
+        android:text="Quarto casal"
         android:textAllCaps="true"
-        android:textColor="@color/white"/>
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/white"
+        android:textSize="30sp"/>
 
     <LinearLayout
         android:id="@+id/macro_light_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:orientation="horizontal"
+        android:layout_below="@+id/macro_name"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/macro_name">
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/macro_light_off_qty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:drawableLeft="@drawable/ic_light_off"
             android:drawablePadding="6dp"
+            android:gravity="center"
             android:text="5"/>
 
         <TextView
@@ -37,12 +40,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:gravity="center"
             android:drawableLeft="@drawable/ic_light_on"
             android:drawablePadding="6dp"
+            android:gravity="center"
             android:text="3"/>
 
     </LinearLayout>
 
+    <View
+        android:id="@+id/macro_item_divisor"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/white"
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 public class Action implements Serializable{
 
+    public static final String STATUS_ON = "ON";
+    public static final String STATUS_OFF = "OFF";
+
     private Long id;
     private String status;
     private Device device;

@@ -17,7 +17,7 @@ import br.unicamp.ic.timeverde.dino.presentation.fragment.RoomFragment;
 public class MainPagerAdapter extends FragmentPagerAdapter {
 
     //Constante com o total de tabs
-    final static int NUMBER_OF_TABS = 2;
+    final static int NUMBER_OF_TABS = 3;
 
     //Constante com o nome das tabs
     final static ArrayList<String> TAB_NAMES = new ArrayList<>(Arrays.asList("CÔMODOS","DEVICES","MACROS"));
