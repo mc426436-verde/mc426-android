@@ -23,6 +23,7 @@ import br.unicamp.ic.timeverde.dino.adapter.DeviceFragmentAdapter;
 import br.unicamp.ic.timeverde.dino.client.WSClient;
 import br.unicamp.ic.timeverde.dino.model.Device;
 import br.unicamp.ic.timeverde.dino.model.User;
+import br.unicamp.ic.timeverde.dino.presentation.activity.MainActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
@@ -144,7 +145,6 @@ public class DeviceFragment extends Fragment implements SwipeRefreshLayout.OnRef
                         }
                         mDeviceList = roomDevices;
                     }
-
 
                     // Run list update on UI thread
                     mUiHandler.post(new Runnable() {

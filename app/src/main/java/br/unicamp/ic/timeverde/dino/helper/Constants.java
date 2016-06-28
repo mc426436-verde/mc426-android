@@ -16,4 +16,8 @@ public class Constants {
     public final static String USER_TOKEN_TYPE = "user-token-type";
 
     public final static String USER_IS_ADMIN = "user-is-admin";
+
+    public final static String NFC_HOST = "nfc.dino.com.br";
+
+    public final static String TOGGLE_DEVICE = "toggleDevice";
 }

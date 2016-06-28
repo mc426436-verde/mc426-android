@@ -10,5 +10,5 @@ public class ApiConfiguration {
         public static final String SCOPE = "read write";
     }
 
-    public static final String BASE_URL = "http://177.220.85.86:8080";
+    public static final String BASE_URL = "http://192.168.1.39:8080";
 }

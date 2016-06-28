@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        applicationId "io.github.lucasx95.dino"
+        applicationId "br.unicamp.ic.timeverde.dino"
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1

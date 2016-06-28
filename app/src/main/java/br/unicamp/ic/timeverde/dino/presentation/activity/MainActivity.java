@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -30,6 +31,12 @@ import butterknife.ButterKnife;
  * MainActiivty para gerenciar navaegação entre fragments
  */
 public class MainActivity extends AppCompatActivity {
+
+    public static final String EXTRA_TOGGLE_MACRO_ID = "extra-toggle-macro-id";
+
+    private static final int TAB_ROOM = 0;
+    private static final int TAB_DEVICE = 1;
+    private static final int TAB_MACRO = 2;
 
     @BindView(R.id.main_pager)
     ViewPager mViewPager;
@@ -70,6 +77,14 @@ public class MainActivity extends AppCompatActivity {
 
         // Seta listener do NavDrawer
         setUpNavigationDrawer();
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable final Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        if (getIntent().getLongExtra(EXTRA_TOGGLE_MACRO_ID, 0L) != 0L) {
+            mViewPager.setCurrentItem(TAB_MACRO, true);
+        }
     }
 
     /**

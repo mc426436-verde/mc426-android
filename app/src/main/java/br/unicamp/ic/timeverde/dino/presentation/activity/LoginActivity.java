@@ -97,7 +97,11 @@ public class LoginActivity extends AppCompatActivity {
                     User permanentUser = response.body();
                     permanentUser.setToken(mTemporaryUser.getToken());
                     DinoApplication.getApplication().setAccount(permanentUser, true);
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    if (getIntent().getExtras() != null) {
+                        intent.putExtras(getIntent().getExtras());
+                    }
+                    startActivity(intent);
                 } else {
                     stopProgress();
                 }

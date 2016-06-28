@@ -1,8 +1,10 @@
 package br.unicamp.ic.timeverde.dino.presentation.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 
 import br.unicamp.ic.timeverde.dino.DinoApplication;
@@ -19,12 +21,25 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        if (DinoApplication.getApplication().isLogged()){
+        Bundle bundle = new Bundle();
+
+        if (DinoApplication.getApplication().isLogged()) {
             DinoApplication.getApplication().setAccountFromSharedPreferences();
-            startActivity(new Intent(this, MainActivity.class));
+            handleNextScreen(bundle, MainActivity.class);
         } else {
-            startActivity(new Intent(this, LoginActivity.class));
+            handleNextScreen(bundle, LoginActivity.class);
         }
+    }
+
+    private void handleNextScreen(@NonNull Bundle extras, Class tClass) {
+        Uri uri = getIntent().getData();
+        if (uri != null && uri.getHost().equals(Constants.TOGGLE_DEVICE)) {
+            Long deviceId = Long.valueOf(uri.getLastPathSegment());
+            extras.putLong(MainActivity.EXTRA_TOGGLE_MACRO_ID, deviceId);
+        }
+        Intent intent = new Intent(this, tClass);
+        intent.putExtras(extras);
+        startActivity(intent);
     }
 
     @Override

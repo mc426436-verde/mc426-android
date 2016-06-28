@@ -20,6 +20,7 @@ import br.unicamp.ic.timeverde.dino.R;
 import br.unicamp.ic.timeverde.dino.adapter.MacroFragmentAdapter;
 import br.unicamp.ic.timeverde.dino.client.WSClient;
 import br.unicamp.ic.timeverde.dino.model.Macro;
+import br.unicamp.ic.timeverde.dino.presentation.activity.MainActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
@@ -82,6 +83,11 @@ public class MacroFragment extends Fragment implements SwipeRefreshLayout.OnRefr
                 mRefreshLayout.setRefreshing(false);
                 if (response != null && response.code() == 200) {
                     mAdapter.updateMacroList(response.body());
+                    if (getActivity().getIntent().getLongExtra(MainActivity.EXTRA_TOGGLE_MACRO_ID, 0L) != 0L) {
+                        Macro macro = new Macro();
+                        macro.setId(getActivity().getIntent().getLongExtra(MainActivity.EXTRA_TOGGLE_MACRO_ID, 0L));
+                        activateMacro(macro);
+                    }
                 }
             }
 
