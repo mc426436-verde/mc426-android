@@ -1,6 +1,7 @@
 package br.unicamp.ic.timeverde.dino.presentation.fragment;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,13 +13,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.List;
+import com.codetroopers.betterpickers.calendardatepicker.CalendarDatePickerDialogFragment;
+import com.codetroopers.betterpickers.radialtimepicker.RadialTimePickerDialogFragment;
+import com.google.android.gms.gcm.GcmNetworkManager;
+import com.google.android.gms.gcm.OneoffTask;
 
-import javax.crypto.Mac;
+import java.util.Calendar;
+import java.util.List;
 
 import br.unicamp.ic.timeverde.dino.R;
 import br.unicamp.ic.timeverde.dino.adapter.MacroFragmentAdapter;
 import br.unicamp.ic.timeverde.dino.client.WSClient;
+import br.unicamp.ic.timeverde.dino.client.job.MacroSchedulerService;
 import br.unicamp.ic.timeverde.dino.model.Macro;
 import br.unicamp.ic.timeverde.dino.presentation.activity.MainActivity;
 import butterknife.BindView;
@@ -31,7 +37,7 @@ import retrofit2.Response;
  * A simple {@link Fragment} subclass.
  */
 public class MacroFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
-                                                       MacroFragmentAdapter.Callback{
+        MacroFragmentAdapter.Callback {
 
     private static final String TAG = MacroFragment.class.getSimpleName();
 
@@ -39,6 +45,8 @@ public class MacroFragment extends Fragment implements SwipeRefreshLayout.OnRefr
     protected RecyclerView mMacroRecyclerView;
     @BindView(R.id.fragment_macro_refresh_layout)
     protected SwipeRefreshLayout mRefreshLayout;
+    private GcmNetworkManager mGcmNetworkManager;
+
 
     private MacroFragmentAdapter mAdapter;
 
@@ -61,6 +69,7 @@ public class MacroFragment extends Fragment implements SwipeRefreshLayout.OnRefr
     @Override
     public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mGcmNetworkManager = GcmNetworkManager.getInstance(getActivity());
         requestMacroList();
     }
 
@@ -72,6 +81,60 @@ public class MacroFragment extends Fragment implements SwipeRefreshLayout.OnRefr
     @Override
     public void onMacroClick(final Macro macro) {
         activateMacro(macro);
+    }
+
+    @Override
+    public boolean onMacroLongClick(final Macro macro) {
+        // Show date picker dialog.
+        CalendarDatePickerDialogFragment dialog = new CalendarDatePickerDialogFragment();
+        final Calendar scheduledTime = Calendar.getInstance();
+        dialog.setOnDateSetListener(new CalendarDatePickerDialogFragment.OnDateSetListener() {
+
+
+            @Override
+            public void onDateSet(CalendarDatePickerDialogFragment dialog, int year, int monthOfYear, int dayOfMonth) {
+                scheduledTime.set(year, monthOfYear, dayOfMonth);
+
+            }
+
+
+        });
+        dialog.setOnDismissListener(new CalendarDatePickerDialogFragment.OnDialogDismissListener() {
+            @Override
+            public void onDialogDismiss(DialogInterface dialoginterface) {
+                RadialTimePickerDialogFragment rtpd = new RadialTimePickerDialogFragment()
+                        .setOnTimeSetListener(new RadialTimePickerDialogFragment.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(RadialTimePickerDialogFragment dialog, int hourOfDay, int minute) {
+                                scheduledTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                                scheduledTime.set(Calendar.MINUTE, minute);
+
+                                Bundle bundle = new Bundle();
+                                bundle.putLong("macroId", macro.getId());
+                                final long scheduledTimeLong = (scheduledTime.getTimeInMillis() -
+                                        Calendar.getInstance().getTimeInMillis
+                                                ()) / 1000;
+
+                                OneoffTask oneoffTask = new OneoffTask.Builder()
+                                        .setService(MacroSchedulerService.class)
+                                        .setTag(macro.getId().toString())
+                                        .setRequiredNetwork(OneoffTask.NETWORK_STATE_ANY)
+                                        .setExecutionWindow(scheduledTimeLong, 30 + scheduledTimeLong
+                                        )
+                                        .setExtras(bundle)
+                                        .build();
+                                mGcmNetworkManager.schedule(oneoffTask);
+                            }
+                        })
+                        .setStartTime(10, 10)
+                        .setDoneText("CRIAR")
+                        .setCancelText("CANCELAR");
+                rtpd.show(getFragmentManager(), "FRAG_TAG_TIME_PICKER");
+            }
+        });
+        dialog.setDoneText("CONTINUAR");
+        dialog.show(getFragmentManager(), "DATE_PICKER_TAG");
+        return true;
     }
 
     private void requestMacroList() {
@@ -112,7 +175,8 @@ public class MacroFragment extends Fragment implements SwipeRefreshLayout.OnRefr
             }
 
             @Override
-            public void onFailure(final Call<Macro> call, final Throwable t) {}
+            public void onFailure(final Call<Macro> call, final Throwable t) {
+            }
         });
     }
 }

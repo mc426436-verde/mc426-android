@@ -1,0 +1,49 @@
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.unicamp.ic.timeverde.dino.presentation.fragment.RoomFragment">
+
+    <LinearLayout
+        android:id="@+id/fragment_new_macro_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/fragment_new_macro_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ADICIONAR AÇÃO"
+            android:textColor="@color/colorLoginDivider"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="AÇÕES"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/font_size_title"
+            android:visibility="visible"/>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_macro_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_plus_white_18dp"
+        android:id="@+id/create_macro_button"
+        app:layout_anchor="@id/fragment_new_macro_layout"
+        app:layout_anchorGravity="bottom|right|end"/>
+
+
+</android.support.design.widget.CoordinatorLayout>

@@ -1,19 +1,31 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="br.unicamp.ic.timeverde.dino.presentation.fragment.RoomFragment">
-
-<android.support.v4.widget.SwipeRefreshLayout
-    android:id="@+id/fragment_macro_refresh_layout"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="br.unicamp.ic.timeverde.dino.presentation.fragment.RoomFragment">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/fragment_macro_recyclerview"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/fragment_macro_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
 
-</android.support.v4.widget.SwipeRefreshLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_macro_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
-</FrameLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom|right"-->
+        <!--android:layout_margin="16dp"-->
+        <!--android:src="@drawable/ic_plus_white_18dp"-->
+        <!--android:id="@+id/new_macro_button"-->
+        <!--app:layout_anchor="@id/fragment_macro_refresh_layout"-->
+        <!--app:layout_anchorGravity="bottom|right|end"/>-->
+
+</android.support.design.widget.CoordinatorLayout>

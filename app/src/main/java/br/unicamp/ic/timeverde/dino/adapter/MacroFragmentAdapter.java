@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -30,8 +31,8 @@ public class MacroFragmentAdapter extends RecyclerView.Adapter<MacroFragmentAdap
     @Override
     public MacroViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
         View rootView = LayoutInflater
-                        .from(mContext)
-                        .inflate(R.layout.list_item_macro_fragment, parent, false);
+                .from(mContext)
+                .inflate(R.layout.list_item_macro_fragment, parent, false);
         return new MacroViewHolder(rootView);
     }
 
@@ -39,11 +40,17 @@ public class MacroFragmentAdapter extends RecyclerView.Adapter<MacroFragmentAdap
     public void onBindViewHolder(final MacroViewHolder holder, final int position) {
         final Macro macro = mMacroList.get(position);
         holder.macroName.setText(macro.getName());
-        holder.rootView.setOnClickListener(new View.OnClickListener() {
+        holder.mActivateButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(final View v) {
                 mCallback.onMacroClick(mMacroList.get(holder.getAdapterPosition()));
+            }
+        });
+        holder.rootView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                return mCallback.onMacroLongClick(macro);
             }
         });
     }
@@ -61,6 +68,8 @@ public class MacroFragmentAdapter extends RecyclerView.Adapter<MacroFragmentAdap
 
     public interface Callback {
         void onMacroClick(Macro macro);
+
+        boolean onMacroLongClick(Macro macro);
     }
 
     public class MacroViewHolder extends RecyclerView.ViewHolder {
@@ -68,6 +77,8 @@ public class MacroFragmentAdapter extends RecyclerView.Adapter<MacroFragmentAdap
         protected View rootView;
         @BindView(R.id.macro_name)
         protected TextView macroName;
+        @BindView(R.id.macro_activate)
+        protected Button mActivateButton;
 
         MacroViewHolder(View v) {
             super(v);

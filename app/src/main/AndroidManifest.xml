@@ -57,6 +57,24 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.unicamp.ic.timeverde.dino.presentation.activity.MainActivity"/>
         </activity>
+        <activity
+            android:name=".presentation.activity.NewMacroActivity"
+            android:label="Novo macro"
+            android:parentActivityName=".presentation.activity.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.unicamp.ic.timeverde.dino.presentation.activity.MainActivity"/>
+        </activity>
+
+        <service android:name=".client.job.MacroSchedulerService"
+                 android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE"
+                 android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

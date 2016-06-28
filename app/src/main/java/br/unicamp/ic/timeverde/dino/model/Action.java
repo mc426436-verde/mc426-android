@@ -11,6 +11,14 @@ public class Action implements Serializable{
     private String status;
     private Device device;
 
+    public Action() {
+    }
+
+    public Action(String status, Device device) {
+        this.status = status;
+        this.device = device;
+    }
+
     public Long getId() {
         return id;
     }
